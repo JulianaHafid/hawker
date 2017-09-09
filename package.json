@@ -4,7 +4,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node ./bin/start",
     "test": "mocha --recursive './test/*Test.js' --compilers js:babel-core/register"
   },
   "dependencies": {
@@ -43,5 +43,8 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-mocha": "^4.8.0",
     "eslint-plugin-react": "^6.10.0"
+  },
+  "engines": {
+    "node": "8.1.2"
   }
 }
