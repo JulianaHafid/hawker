@@ -1,0 +1,63 @@
+extends layout
+block content
+  <!--This section loads the navigation bar-->
+  nav.navbar.navbar-inverse
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='#') Hawker@SG
+      #myNavbar.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li
+            a(href='/') Home
+          li.active
+            a(href='/profile') Profile
+
+
+        navbar-form.navbar-right.loginButton
+          a.btn.btn-success.active(href='/users/login') Log in
+  .container
+    form.form-horizontal
+      fieldset
+        // Form Name
+        legend Profile
+        // Text input
+        .form-group
+          label.col-md-4.control-label(for='textinput') name
+          .col-md-4
+            input#textinput.form-control.input-md(name='textinput', type='text', placeholder='Name')
+        // Text input
+        .form-group
+          label.col-md-4.control-label(for='textinput') address
+          .col-md-4
+            input#textinput.form-control.input-md(name='textinput', type='text', placeholder='Address')
+        // Text input
+        .form-group
+          label.col-md-4.control-label(for='textinput') location
+          .col-md-4
+            input#textinput.form-control.input-md(name='textinput', type='text', placeholder='Location')
+        // Select Basic
+        .form-group
+          label.col-md-4.control-label(for='selectbasic') country
+          .col-md-4
+            select#selectbasic.form-control(name='selectbasic')
+              option(value='1') 1
+              option(value='2') 2
+        // Textarea
+        .form-group
+          label.col-md-4.control-label(for='textarea') comments
+          .col-md-4
+            textarea#textarea.form-control(name='textarea')
+        // File Button
+        .form-group
+          label.col-md-4.control-label(for='filebutton') upload photo
+          .col-md-4
+            input#filebutton.input-file(name='filebutton', type='file')
+        // Button
+        .form-group
+          label.col-md-4.control-label(for='singlebutton')
+          .col-md-4
+            button#singlebutton.btn.btn-primary(name='singlebutton') submit

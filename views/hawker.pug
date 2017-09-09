@@ -1,0 +1,165 @@
+extends layout
+
+block content
+  nav.navbar.navbar-inverse
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='#') Hawker@SG
+      #myNavbar.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a(href='/') Home
+          li
+            a(href='/profile') Profile
+
+
+        navbar-form.navbar-right.loginButton
+          if(user)
+            a.btn.btn-success(href='/users/logout') Logout
+          else
+            a.btn.btn-success(href='/users/login') Login
+  .tagline-upper.text-center.text-heading.text-shadow.text-white.mt-5.d-none.d-lg-block Rice Garden
+  .tagline-lower.text-center.text-expanded.text-shadow.text-uppercase.text-white.mb-5.d-none.d-lg-block 6 Newton Road | Singapore 90210 | 9.456.7890
+  // Navigation
+  nav.navbar.navbar-expand-lg.navbar-light.bg-faded.py-lg-4
+    .container
+    .bg-faded.p-4.my-4
+      hr.divider
+      h2.text-center.text-lg.text-uppercase.my-0
+        | About
+        strong Rice Garden
+      hr.divider
+      .row
+        #map.col-md-6
+          img.img-fluid.mb-4.mb-lg-0(src='', alt='Location Map')
+        .col-md-6
+          p
+            | Cuisine: Chinese
+          p
+            | Operating Hours: 7:00am - 2:00pm
+          p
+            | Rating: 4.3
+          p
+            | Cashless Payment Accepted: Yes
+        .container
+          .row(style='margin-top:40px;')
+            .col-md-6
+
+              .text-center
+                if(user)
+                  a#open-review-box.btn.btn-success.btn-green.pull-left(href='#reviews-anchor') Leave a Review
+
+                #post-review-box.row(style='display:none;')
+                  .col-md-12
+                    form(accept-charset='UTF-8', action='/users/review', method='post')
+                      input#ratings-hidden(name='rating', type='hidden')
+                      textarea#new-review.form-control.animated(cols='50', name='subject', placeholder='Enter your subject here...', rows='2',style="resize: none")
+                      textarea#new-review.form-control.animated(cols='50', name='comment', placeholder='Enter your review here...', rows='7',style="resize: none")
+                      .text-right
+                        .stars.starrr(data-rating='0')
+                      a#close-review-box.btn.btn-danger.btn-sm(href='#', style='display:none; margin-right: 10px;')
+                        span.glyphicon.glyphicon-remove
+                        | Cancel
+                      button.btn.btn-success.btn-sm(type='submit')
+                        span.glyphicon.glyphicon-ok
+                        | Save
+
+    .bg-faded.p-4.my-4
+      hr.divider
+      h2.text-center.text-lg.text-uppercase.my-0
+        .row
+        p
+          | Our
+          strong Reviews
+        p
+          label.label-primary
+            |
+            span.badge 4.3/5
+        if (!user)
+          p.red
+            | To make a review, please login.
+      hr.divider
+    .container
+      .row
+        .col-xs-12.col-sm-3.col-md-3.reviewBox
+          a(href='#')
+            img.img-responsive.img-box.img-thumbnail(src='http://wanderluxe.theluxenomad.com/wp-content/uploads/2014/10/http-www.urchinbali.comgallery.jpg')
+        .col-xs-12.col-sm-9.col-md-9
+          .list-group
+            .list-group-item
+              .row-content
+                .list-group-item-heading
+                  a(href='#') Rating: 3
+                small
+                  i.glyphicon.glyphicon-time
+                  |  3 days ago via
+                  span.twitter
+                    i.fa.fa-twitter
+                    a(target='_blank', href='https://twitter.com/sintret', alt='sintret', title='sintret') @sintret
+                  br
+
+          h4
+            a(href='#') Who say hawker food no good?
+          p
+            | Super good food! Doesnt burn a hole in my pocket. Their presentation is so good that you think this is a restaurant food.
+      .row
+        .col-xs-12.col-sm-3.col-md-3.reviewBox
+          a(href='#')
+            img.img-responsive.img-box.img-thumbnail(src='http://wanderluxe.theluxenomad.com/wp-content/uploads/2014/09/http-barbacoabali.com_.jpg')
+        .col-xs-12.col-sm-9.col-md-9
+          .list-group
+            .list-group-item
+              .row-content
+                .list-group-item-heading
+                  a(href='#') Rating: 2
+                small
+                  i.glyphicon.glyphicon-time
+                  |  1 month ago via
+                  span.twitter
+                    i.fa.fa-twitter
+                    a(target='_blank', href='https://twitter.com/jovi', alt='jovi', title='sintret') @jovi
+                  br
+
+          h4
+            a(href='#') Ho Jiak!
+          p
+            | Nom. Nom. I like the rice taco! They serve like restaurant!
+
+      .row
+        for element in data
+          .col-xs-12.col-sm-3.col-md-3.reviewBox
+            a(href='#')
+              img.img-responsive.img-box.img-thumbnail(src='http://wanderluxe.theluxenomad.com/wp-content/uploads/2014/09/http-barbacoabali.com_.jpg')
+          .col-xs-12.col-sm-9.col-md-9
+            .list-group
+              .list-group-item
+                .row-content
+                  .list-group-item-heading
+                    a(href='#') Rating: #{element.rating}
+                  small
+                    i.glyphicon.glyphicon-time
+                    |  1 month ago via
+                    span.twitter
+                      i.fa.fa-twitter
+                      a(target='_blank', href='https://twitter.com/jovi', alt='jovi', title='sintret') @jovi
+                    br
+
+            h4
+              a(href='#') #{element.subject}
+            p
+              | #{element.comment}
+            if (user)
+          .clear
+          hr
+
+
+
+
+  block scripts
+    script(src='/javascripts/popper.min.js')
+    script(src='/javascripts/location.js')
+    script(src='/javascripts/review.js')
