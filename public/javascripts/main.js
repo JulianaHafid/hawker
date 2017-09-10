@@ -11,6 +11,8 @@ $(document).ready(function() {
     buildGrid(filteredProjects);
   });
 
+  
+
   $('.category-buttons a').on('click', function(e) {
     e.preventDefault();
     if (!running) {
